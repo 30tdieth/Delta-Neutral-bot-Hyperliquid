@@ -1,0 +1,23 @@
+# Sauvegardes locales
+*.bak
+*.bak[0-9]
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Journaux
+*.log
+
+# Systeme
+Thumbs.db
+.DS_Store
+
+# Anciennes versions du journal, volumineuses et perimees
+Transmissions/*.docx
+
+# Documents de travail internes (restent en local, non publies)
+Transmissions/
+*.docx

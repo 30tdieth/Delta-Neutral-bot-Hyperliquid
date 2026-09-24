@@ -1,0 +1,30 @@
+Delta-Neutral Funding Bot — setup notes (PowerShell / Windows)
+=============================================================
+
+ACCOUNT (testnet)
+  master address : 0xYOUR_ACCOUNT_ADDRESS
+
+  An address is PUBLIC and safe to write here (42 chars).
+  The AGENT KEY is a private key (66 chars) — NEVER write it in a file.
+  This folder lives in OneDrive and syncs to the cloud.
+
+ONE-TIME
+  python -m pip install hyperliquid-python-sdk
+  Create a NEW agent/API wallet in the testnet UI under the NEW master
+  account. An agent wallet from the old account will NOT work here.
+  Faucet: app.hyperliquid-testnet.xyz/drip
+
+EACH TERMINAL SESSION (env vars die when the window closes — that is good)
+  $env:HL_ACCOUNT_ADDRESS = "0xYOUR_ACCOUNT_ADDRESS"
+  $env:HL_AGENT_KEY       = "0x...."          # paste, never echo it
+
+  Check without printing the secret:
+  $env:HL_AGENT_KEY.Length          -> want 66  (42 means you pasted an address)
+  $env:HL_ACCOUNT_ADDRESS.Length    -> want 42
+
+RUN (Phase C, testnet, HYPE)
+  python phase_c_testnet.py --once                    # unarmed, log only
+  python phase_c_testnet.py --enter 30 --arm --once   # open ~$30/leg neutral
+  python phase_c_testnet.py --arm                     # armed manager loop
+
+NOTE: 'export NAME=value' is Mac/Linux syntax. PowerShell uses $env:NAME = "value".
